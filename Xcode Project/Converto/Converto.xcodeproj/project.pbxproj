@@ -7,17 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A7A1083AF807A239AC7D200 /* Pods_Converto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95390D69BBE02902916FCBC1 /* Pods_Converto.framework */; };
+		D569075721EDCF9C00E0C987 /* MoneteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D569075621EDCF9C00E0C987 /* MoneteViewController.swift */; };
+		D569075921EDD0C200E0C987 /* ConvertoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D569075821EDD0C200E0C987 /* ConvertoViewController.swift */; };
 		D5804E0B21E74C7800B55E2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5804E0A21E74C7800B55E2A /* AppDelegate.swift */; };
-		D5804E0D21E74C7800B55E2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5804E0C21E74C7800B55E2A /* ViewController.swift */; };
 		D5804E1021E74C7800B55E2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5804E0E21E74C7800B55E2A /* Main.storyboard */; };
 		D5804E1221E74C7A00B55E2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5804E1121E74C7A00B55E2A /* Assets.xcassets */; };
 		D5804E1521E74C7A00B55E2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5804E1321E74C7A00B55E2A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B50BFD5DFC6121744553E23 /* Pods-Converto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Converto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Converto/Pods-Converto.debug.xcconfig"; sourceTree = "<group>"; };
+		93895260F64358564D71EB57 /* Pods-Converto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Converto.release.xcconfig"; path = "Pods/Target Support Files/Pods-Converto/Pods-Converto.release.xcconfig"; sourceTree = "<group>"; };
+		95390D69BBE02902916FCBC1 /* Pods_Converto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Converto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D569075621EDCF9C00E0C987 /* MoneteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneteViewController.swift; sourceTree = "<group>"; };
+		D569075821EDD0C200E0C987 /* ConvertoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertoViewController.swift; sourceTree = "<group>"; };
 		D5804E0721E74C7800B55E2A /* Converto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Converto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5804E0A21E74C7800B55E2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D5804E0C21E74C7800B55E2A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D5804E0F21E74C7800B55E2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D5804E1121E74C7A00B55E2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5804E1421E74C7A00B55E2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -29,17 +35,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A7A1083AF807A239AC7D200 /* Pods_Converto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27CE4180BDB871F54D5056FC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3B50BFD5DFC6121744553E23 /* Pods-Converto.debug.xcconfig */,
+				93895260F64358564D71EB57 /* Pods-Converto.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		399023DF3498CD34DEBA5953 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95390D69BBE02902916FCBC1 /* Pods_Converto.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D569075321EDC6CF00E0C987 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D569075621EDCF9C00E0C987 /* MoneteViewController.swift */,
+				D569075821EDD0C200E0C987 /* ConvertoViewController.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		D5804DFE21E74C7800B55E2A = {
 			isa = PBXGroup;
 			children = (
 				D5804E0921E74C7800B55E2A /* Converto */,
 				D5804E0821E74C7800B55E2A /* Products */,
+				27CE4180BDB871F54D5056FC /* Pods */,
+				399023DF3498CD34DEBA5953 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,8 +89,8 @@
 		D5804E0921E74C7800B55E2A /* Converto */ = {
 			isa = PBXGroup;
 			children = (
+				D569075321EDC6CF00E0C987 /* Classes */,
 				D5804E0A21E74C7800B55E2A /* AppDelegate.swift */,
-				D5804E0C21E74C7800B55E2A /* ViewController.swift */,
 				D5804E0E21E74C7800B55E2A /* Main.storyboard */,
 				D5804E1121E74C7A00B55E2A /* Assets.xcassets */,
 				D5804E1321E74C7A00B55E2A /* LaunchScreen.storyboard */,
@@ -71,9 +106,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D5804E1921E74C7A00B55E2A /* Build configuration list for PBXNativeTarget "Converto" */;
 			buildPhases = (
+				A8839B963A7A309AC8BE7029 /* [CP] Check Pods Manifest.lock */,
 				D5804E0321E74C7800B55E2A /* Sources */,
 				D5804E0421E74C7800B55E2A /* Frameworks */,
 				D5804E0521E74C7800B55E2A /* Resources */,
+				5F3150128A3946F4E30E201A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,12 +167,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5F3150128A3946F4E30E201A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Converto/Pods-Converto-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftChart/SwiftChart.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftChart.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Converto/Pods-Converto-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A8839B963A7A309AC8BE7029 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Converto-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D5804E0321E74C7800B55E2A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5804E0D21E74C7800B55E2A /* ViewController.swift in Sources */,
+				D569075921EDD0C200E0C987 /* ConvertoViewController.swift in Sources */,
+				D569075721EDCF9C00E0C987 /* MoneteViewController.swift in Sources */,
 				D5804E0B21E74C7800B55E2A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +365,7 @@
 		};
 		D5804E1A21E74C7A00B55E2A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B50BFD5DFC6121744553E23 /* Pods-Converto.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +384,7 @@
 		};
 		D5804E1B21E74C7A00B55E2A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93895260F64358564D71EB57 /* Pods-Converto.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
