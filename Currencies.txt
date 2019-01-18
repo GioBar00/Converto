@@ -1,0 +1,33 @@
+PHP Philipines -> Peso filippino 		IMG
+HUF Ungheria -> Fiorino ungherese 		IMG
+IDR Indonesia -> Rupia indonesiana 		IMG
+TRY Turchia -> Lira turca 			IMG
+RON Romania -> Leu romeno 			IMG
+ISK Islanda -> Corona islandese 		IMG
+ILS Israele -> Nuovo shekel israeliano 		IMG
+CNY Cina -> Renminbi cinese 			IMG
+USD USA -> Dollaro statunitense 		IMG
+EUR Europe -> Euro 				IMG
+PLN Polonia -> Złoty polacco 			IMG
+GBP United Kingdom -> Sterlina britannica 	IMG
+CAD Canada -> Dollaro canadese			IMG
+AUD Australia -> Dollaro australiano		IMG
+MYR Malaysia -> Ringgit malaysiano		IMG
+NZD Nuova Zelanda -> Dollaro neozelandese	IMG
+CHF Svizzera -> Franco svizzero			IMG
+HRK Croazia -> Kuna croata			IMG
+SGD Singapore -> Dollaro di Singapore		IMG
+DKK Danimarca -> Corona danese			IMG
+BGN Bulgaria -> Lev bulgaro			IMG
+CZK Repubblica Ceca -> Corona ceca		IMG
+BRL Brasile -> Real brasiliano			IMG
+JPY Giappone -> Yen				IMG
+KRW Sud Korea -> Won sudcoreano			IMG
+INR India -> Rupia indiana			IMG
+SEK Svezia -> Corona svedese			IMG
+MXN Messico -> Peso messicano			IMG
+RUB Russia -> Rublo russo			IMG
+HKD Hong Kong -> Dollaro di Hong Kong		IMG
+ZAR Sudafrica -> Rand sudafricano		IMG
+THB Thailandia -> Baht thailandese		IMG
+NOK Norvegia -> Corona norvegese		IMG
