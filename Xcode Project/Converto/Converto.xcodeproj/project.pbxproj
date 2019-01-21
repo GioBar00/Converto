@@ -15,6 +15,9 @@
 		D5804E0B21E74C7800B55E2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5804E0A21E74C7800B55E2A /* AppDelegate.swift */; };
 		D5804E1021E74C7800B55E2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5804E0E21E74C7800B55E2A /* Main.storyboard */; };
 		D5804E1521E74C7A00B55E2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5804E1321E74C7A00B55E2A /* LaunchScreen.storyboard */; };
+		D5B41EDE21F627C20071A6EB /* CurrenciesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B41EDD21F627C20071A6EB /* CurrenciesTableViewController.swift */; };
+		D5B41EE021F635B90071A6EB /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B41EDF21F635B90071A6EB /* CurrencyTableViewCell.swift */; };
+		D5B41EE221F63D720071A6EB /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B41EE121F63D720071A6EB /* Protocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		D5804E0F21E74C7800B55E2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D5804E1421E74C7A00B55E2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D5804E1621E74C7A00B55E2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5B41EDD21F627C20071A6EB /* CurrenciesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesTableViewController.swift; sourceTree = "<group>"; };
+		D5B41EDF21F635B90071A6EB /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		D5B41EE121F63D720071A6EB /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,7 @@
 			children = (
 				D54DBB9321F2317B00FCA613 /* Api.swift */,
 				D54DBB9521F2358A00FCA613 /* Currency.swift */,
+				D5B41EE121F63D720071A6EB /* Protocols.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -74,6 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				D569075821EDD0C200E0C987 /* ConvertoViewController.swift */,
+				D5B41EDD21F627C20071A6EB /* CurrenciesTableViewController.swift */,
+				D5B41EDF21F635B90071A6EB /* CurrencyTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -230,9 +239,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5B41EDE21F627C20071A6EB /* CurrenciesTableViewController.swift in Sources */,
 				D54DBB9621F2358A00FCA613 /* Currency.swift in Sources */,
+				D5B41EE221F63D720071A6EB /* Protocols.swift in Sources */,
 				D54DBB9421F2317B00FCA613 /* Api.swift in Sources */,
 				D569075921EDD0C200E0C987 /* ConvertoViewController.swift in Sources */,
+				D5B41EE021F635B90071A6EB /* CurrencyTableViewCell.swift in Sources */,
 				D5804E0B21E74C7800B55E2A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
