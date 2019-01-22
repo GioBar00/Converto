@@ -12,16 +12,20 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     
     @IBOutlet weak var btnCurrencyLeft: UIButton!
     @IBOutlet weak var lblLeftCurrencyName: UILabel!
+    @IBOutlet weak var lblLeftCode: UILabel!
     
     @IBOutlet weak var btnCurrencyRight: UIButton!
     @IBOutlet weak var lblRightCurrencyName: UILabel!
+    @IBOutlet weak var lblRightCode: UILabel!
     
     @IBOutlet weak var textFieldQuantity: UITextField!
     
     @IBOutlet weak var btnExchange: UIButton!
     @IBOutlet weak var historyView: UIView!
+    @IBOutlet weak var buttomView: UIView!
     
     @IBOutlet weak var lblResult: UILabel!
+    @IBOutlet weak var lblExchangeRate: UILabel!
     
     var leftCurrency = Currencies.currencies.first(where: {$0.code == "EUR"}) ?? Currencies.currencies[0]
     var rightCurrency = Currencies.currencies.first(where: {$0.code == "USD"}) ?? Currencies.currencies[1]
@@ -29,9 +33,9 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     var modifying = false
     var modifyingLeft = false
     
-    var canPutDot = true
-    
     var exchangeValue : Double = 1.2
+    
+    var sv : UIView? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +44,7 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
         btnExchange.imageView?.contentMode = .scaleAspectFit
         btnCurrencyLeft.imageView?.contentMode = .scaleAspectFit
         btnCurrencyRight.imageView?.contentMode = .scaleAspectFit
+        lblExchangeRate.text = ""
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.view.addGestureRecognizer(tap)
@@ -49,6 +54,7 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     
     func closeKeyboad() {
         view.endEditing(true)
+        buttomView.isHidden = false
     }
     
     @objc func handleTap() {
@@ -56,21 +62,32 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     }
     
     func getExchangeValues() {
-        // get exchange from api
-        // put loading screen
-        
+        sv = UIViewController.displaySpinner(onView: self.view)
+        ApiManager.Instance.GetExchange(base: leftCurrency, to: rightCurrency, completion: { val in
+            self.updateExchangeValue(val: val)
+        })
         loadCurrencies()
         textFieldQuantity.text = ""
         updateResults()
     }
     
+    func updateExchangeValue(val : Double) {
+        if let s = sv {
+            UIViewController.removeSpinner(spinner: s)
+        }
+        exchangeValue = val
+        lblExchangeRate.text = "Exchange rate:\n" + String(format:"%.5f", exchangeValue)
+    }
+    
     func loadCurrencies() {
         lblLeftCurrencyName.text = leftCurrency.name
         btnCurrencyLeft.setImage(leftCurrency.Image(), for: .normal)
+        lblLeftCode.text = leftCurrency.code
         
         
         lblRightCurrencyName.text = rightCurrency.name
         btnCurrencyRight.setImage(rightCurrency.Image(), for: .normal)
+        lblRightCode.text = rightCurrency.code
     }
     
     func updateResults() {
@@ -78,7 +95,7 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
         if let value = Double(textFieldQuantity.text ?? "0") {
             res = value * exchangeValue
         }
-        lblResult.text = String(format:"%.2f", res) + String(rightCurrency.symbol)
+        lblResult.text = String(format:"%.2f", res) + " " + String(rightCurrency.symbol)
     }
     
     @IBAction func btnSwitch(_ sender: Any) {
@@ -118,12 +135,25 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
                 }
             }
         }
-        if dotNum > 1  || num > 2 || textFieldQuantity.text == "00"{
+        let text = textFieldQuantity.text ?? ""
+        if text.count > 1 {
+            if text[0] == Character("0") {
+                if text[1] != Character(".") {
+                    textFieldQuantity.text?.removeFirst()
+                    return
+                }
+            }
+        }
+        if dotNum > 1  || num > 2 {
             textFieldQuantity.text?.removeLast()
         }
         else {
             updateResults()
         }
+    }
+    
+    @IBAction func textFieldBegin(_ sender: Any) {
+        buttomView.isHidden = true
     }
     
     func currencyChoosen(currency c: Currency?) {
