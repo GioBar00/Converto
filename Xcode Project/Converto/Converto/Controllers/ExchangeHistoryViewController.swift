@@ -14,7 +14,17 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate {
     @IBOutlet var timeButtons: [UIButton]!
     @IBOutlet weak var chart: Chart!
     @IBOutlet weak var lblValue: UILabel!
+    
     //METTERE COME VALORE SEMPRE QUELLO DEL GIORNO PRIMA COME PRIMO VALORE
+    var serieData: [Double] = []
+    var labels: [Double] = []
+    var labelsAsString: Array<String> = []
+    
+    var historyType : HistoryType = .OneMonth
+    
+    let dateFormatter = DateFormatter()
+    
+    var sv : UIView? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,41 +32,148 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate {
         // Do any additional setup after loading the view.
         lblValue.text = ""
         chart.delegate = self
+        chart.hideHighlightLineOnTouchEnd = true
+        chart.xLabelsTextAlignment = .center
+        chart.labelFont = UIFont.init(name: "GillSans", size: 12)
         
-        chart.removeAllSeries()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        var serieData: [Double] = [0.6, 1.0, 1.3, 1.2, 1.5, 2.0]
-        var labels: [Double] = [0, 1, 2, 3, 4]
-        var labelsAsString: Array<String> = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì"]
+        clearChart()
         
         // Date formatter to retrieve the month names
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM"
+        let form = DateFormatter()
+        form.dateFormat = "MM"
+
         
-        let series = ChartSeries(serieData)
-        series.area = true
         
         // Configure chart layout
         
         //chart.lineWidth = 0.5
-        chart.labelFont = UIFont.init(name: "GillSans", size: 12)
-        chart.xLabels = labels
-        chart.xLabelsFormatter = { (labelIndex: Int, labelValue: Double) -> String in
-            return labelsAsString[labelIndex]
-        }
-        chart.xLabelsTextAlignment = .center
+        
+        
+        
         //chart.yLabelsOnRightSide = true
         // Add some padding above the x-axis
         //chart.minY = serieData.min()! - 5
-        chart.minY = 0
+//        chart.minY = 0
+
+        
+        
+        
+        GetHistory(type: historyType)
+        
+        
+    }
+    
+    func clearChart() {
+        chart.removeAllSeries()
+        serieData = []
+        labels = []
+        labelsAsString = []
+        
+        chart.yLabelsFormatter = { String(format:"%.2f", $1) + " " + ConvertoViewController.rightCurrency.symbol }
+    }
+    
+    func parseData(_ data : [Date : Double]) {
+        clearChart()
+        let dates = data.keys.sorted()
+        print("TIPO")
+        print(historyType.rawValue)
+        var i = 0
+        for date in dates {
+            serieData.append(data[date]!)
+            
+            let name = GetLabelName(date: date)
+            if (labels.count == 0 || labelsAsString.last! != name) {
+                labels.append(Double(i))
+                labelsAsString.append(name)
+            }
+            
+            i += 1
+        }
+        
+        let series = ChartSeries(serieData)
+        series.area = true
+        
+        chart.xLabels = labels
+        chart.xLabelsFormatter = { (labelIndex: Int, labelValue: Double) -> String in
+            return self.labelsAsString[labelIndex]
+        }
+        
+        chart.minY = serieData.min()! - 0.1
         
         chart.add(series)
+        
+        if let spinner = sv {
+            UIViewController.removeSpinner(spinner: spinner)
+        }
     }
-
+    
+    func GetLabelName(date: Date) -> String {
+        let calendar = Calendar.current
+        let dateForm = DateFormatter()
+        dateForm.dateFormat = "MMM"
+        switch historyType {
+        case .OneMonth:
+            dateForm.dateFormat = "d/M/yyyy"
+            if labels.count == 0 {
+                return dateForm.string(from: date)
+            }
+            return dateForm.string(from: date.previous(.monday, considerToday: true))
+        case .SixMonth:
+            return dateForm.string(from: date)
+        case .OneYear:
+            if labels.count == 0 {
+                return dateForm.string(from: date)
+            }
+            let d = dateForm.date(from: labelsAsString.last!)!
+            if calendar.component(.month, from: d) == calendar.component(.month, from: calendar.date(byAdding: .month, value: -2, to: date)!) {
+                return dateForm.string(from: date)
+            }
+            return labelsAsString.last!
+        case .FiveYears:
+            dateForm.dateFormat = "yyyy"
+            return dateForm.string(from: date)
+        default:
+            dateForm.dateFormat = "yyyy"
+            if labels.count == 0 {
+                return dateForm.string(from: date)
+            }
+            let d = dateForm.date(from: labelsAsString.last!)!
+            if calendar.component(.year, from: date) - calendar.component(.year, from: d) > 1 {
+                return dateForm.string(from: date)
+            }
+            return labelsAsString.last!
+        }
+    }
+    
+    func GetHistory(type : HistoryType) {
+        ApiManager.Instance.GetHistory(base: ConvertoViewController.leftCurrency, symbol: ConvertoViewController.rightCurrency, from: GetDate(offset: type), to: Date(), completion: parseData(_:))
+    }
+    
+    func GetDate(offset type: HistoryType) -> Date {
+        let now = Calendar.current
+        switch type {
+        case .OneMonth:
+            return now.date(byAdding: .month, value: -1, to: Date()) ?? Date()
+        case .SixMonth:
+            return now.date(byAdding: .month, value: -6, to: Date()) ?? Date()
+        case .OneYear:
+            return now.date(byAdding: .year, value: -1, to: Date()) ?? Date()
+        case .FiveYears:
+            return now.date(byAdding: .year, value: -5, to: Date()) ?? Date()
+        default:
+            return dateFormatter.date(from: "1999-01-01") ?? Date()
+        }
+    }
+    
     @IBAction func btnTimeClick(_ sender: Any) {
         let btn = sender as! UIButton
         select(button: btn, true)
         deselectOthers(btn)
+        sv = UIViewController.displaySpinner(onView: chart)
+        historyType = HistoryType(rawValue: btn.tag)!
+        GetHistory(type: historyType)
     }
     
     private func deselectOthers(_ btn : UIButton) {
@@ -66,12 +183,6 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate {
             select(button: x, false)
         }
     }
-    
-//    private func select(button btn: UIButton) {
-//        let color1 = btn.backgroundColor
-//        btn.backgroundColor = btn.titleLabel?.textColor
-//        btn.titleLabel?.textColor = color1
-//    }
     
     private func select(button btn: UIButton, _ bool : Bool) {
         btn.backgroundColor = bool ? UIColor(red: 37/255, green: 65/255, blue: 178/255, alpha: 1) : UIColor.white
@@ -98,6 +209,6 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate {
     }
     
     func didEndTouchingChart(_ chart: Chart) {
-        
+        lblValue.text = ""
     }
 }

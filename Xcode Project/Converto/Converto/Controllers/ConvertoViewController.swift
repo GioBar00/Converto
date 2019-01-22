@@ -10,6 +10,9 @@ import UIKit
 
 class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     
+    static var leftCurrency = Currencies.currencies.first(where: {$0.code == "EUR"}) ?? Currencies.currencies[0]
+    static var rightCurrency = Currencies.currencies.first(where: {$0.code == "USD"}) ?? Currencies.currencies[1]
+    
     @IBOutlet weak var btnCurrencyLeft: UIButton!
     @IBOutlet weak var lblLeftCurrencyName: UILabel!
     @IBOutlet weak var lblLeftCode: UILabel!
@@ -27,8 +30,6 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     @IBOutlet weak var lblResult: UILabel!
     @IBOutlet weak var lblExchangeRate: UILabel!
     
-    var leftCurrency = Currencies.currencies.first(where: {$0.code == "EUR"}) ?? Currencies.currencies[0]
-    var rightCurrency = Currencies.currencies.first(where: {$0.code == "USD"}) ?? Currencies.currencies[1]
     
     var modifying = false
     var modifyingLeft = false
@@ -63,7 +64,7 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     
     func getExchangeValues() {
         sv = UIViewController.displaySpinner(onView: self.view)
-        ApiManager.Instance.GetExchange(base: leftCurrency, to: rightCurrency, completion: { val in
+        ApiManager.Instance.GetExchange(base: ConvertoViewController.leftCurrency, to: ConvertoViewController.rightCurrency, completion: { val in
             self.updateExchangeValue(val: val)
         })
         loadCurrencies()
@@ -80,14 +81,14 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     }
     
     func loadCurrencies() {
-        lblLeftCurrencyName.text = leftCurrency.name
-        btnCurrencyLeft.setImage(leftCurrency.Image(), for: .normal)
-        lblLeftCode.text = leftCurrency.code
+        lblLeftCurrencyName.text = ConvertoViewController.leftCurrency.name
+        btnCurrencyLeft.setImage(ConvertoViewController.leftCurrency.Image(), for: .normal)
+        lblLeftCode.text = ConvertoViewController.leftCurrency.code
         
         
-        lblRightCurrencyName.text = rightCurrency.name
-        btnCurrencyRight.setImage(rightCurrency.Image(), for: .normal)
-        lblRightCode.text = rightCurrency.code
+        lblRightCurrencyName.text = ConvertoViewController.rightCurrency.name
+        btnCurrencyRight.setImage(ConvertoViewController.rightCurrency.Image(), for: .normal)
+        lblRightCode.text = ConvertoViewController.rightCurrency.code
     }
     
     func updateResults() {
@@ -95,14 +96,14 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
         if let value = Double(textFieldQuantity.text ?? "0") {
             res = value * exchangeValue
         }
-        lblResult.text = String(format:"%.2f", res) + " " + String(rightCurrency.symbol)
+        lblResult.text = String(format:"%.2f", res) + " " + String(ConvertoViewController.rightCurrency.symbol)
     }
     
     @IBAction func btnSwitch(_ sender: Any) {
         closeKeyboad()
-        let temp = rightCurrency
-        rightCurrency = leftCurrency
-        leftCurrency = temp
+        let temp = ConvertoViewController.rightCurrency
+        ConvertoViewController.rightCurrency = ConvertoViewController.leftCurrency
+        ConvertoViewController.leftCurrency = temp
         getExchangeValues()
     }
     
@@ -159,16 +160,16 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     func currencyChoosen(currency c: Currency?) {
         if let currency = c {
             if !modifyingLeft {
-                rightCurrency = currency
+                ConvertoViewController.rightCurrency = currency
             }
             else {
-                leftCurrency = currency
-                if leftCurrency.code == rightCurrency.code {
-                    if leftCurrency.code == "EUR" {
-                        rightCurrency = Currencies.currencies.first(where: {$0.code == "USD"}) ?? Currencies.currencies[1]
+                ConvertoViewController.leftCurrency = currency
+                if ConvertoViewController.leftCurrency.code == ConvertoViewController.rightCurrency.code {
+                    if ConvertoViewController.leftCurrency.code == "EUR" {
+                        ConvertoViewController.rightCurrency = Currencies.currencies.first(where: {$0.code == "USD"}) ?? Currencies.currencies[1]
                     }
                     else {
-                        rightCurrency = Currencies.currencies.first(where: {$0.code == "EUR"}) ?? Currencies.currencies[0]
+                        ConvertoViewController.rightCurrency = Currencies.currencies.first(where: {$0.code == "EUR"}) ?? Currencies.currencies[0]
                     }
                 }
             }
@@ -178,15 +179,15 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     
     func currencyToRemove() -> Currency? {
         if modifying && !modifyingLeft {
-            return leftCurrency
+            return ConvertoViewController.leftCurrency
         }
         return nil
     }
     
     func selectedCurrency() -> Currency {
         if modifyingLeft {
-            return leftCurrency
+            return ConvertoViewController.leftCurrency
         }
-        return rightCurrency
+        return ConvertoViewController.rightCurrency
     }
 }

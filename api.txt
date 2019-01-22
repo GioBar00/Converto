@@ -1,7 +1,7 @@
 https://api.exchangeratesapi.io/latest?base=USD&symbols=GBP,EUR
 https://api.exchangeratesapi.io/2010-01-12?base=USD&symbols=GBP,EUR
 
-https://api.exchangeratesapi.io/history?start_at=2018-01-01&end_at=2018-09-01&base=USD&symbols=GBP,EUR
+https://api.exchangeratesapi.io/history?start_at=2018-01-01&end_at=2018-09-01&base=USD&symbols=GBP
 
 // per capire se è disponibile
 {"error":"Symbols 'PHP' are invalid for date 2000-01-12."}
