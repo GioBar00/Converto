@@ -106,7 +106,7 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate, DataReload
             return self.labelsAsString[labelIndex]
         }
         
-        chart.minY = serieData.min()! - 0.1
+        chart.minY = serieData.min()! - 0.01
         
         chart.add(series)
         
@@ -183,6 +183,11 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate, DataReload
         deselectOthers(btn)
         chart.isHidden = false
         errorView.isHidden = true
+        if let spin = sv {
+            if loading {
+                UIViewController.removeSpinner(spinner: spin)
+            }
+        }
         sv = UIViewController.displaySpinner(onView: chart)
         historyType = HistoryType(rawValue: btn.tag)!
         GetHistory(type: historyType)

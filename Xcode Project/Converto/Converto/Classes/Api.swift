@@ -19,6 +19,12 @@ class ApiManager {
         url += "base=" + base.code + "&"
         url += "symbols=" + to.code
         
+        print("NEW Exchange Request:")
+        print(base.code + " --> " + to.code)
+        print(url)
+        print()
+        
+        
         let request = URLRequest(url: URL(string: url)!)
         
         URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
@@ -50,6 +56,11 @@ class ApiManager {
         url += "symbols=" + symb.code + "&"
         url += "start_at=" + dateFormatter.string(from: from) + "&"
         url += "end_at=" + dateFormatter.string(from: to)
+        
+        print("NEW History Request:")
+        print(base.code + " --> " + symb.code)
+        print(url)
+        print()
         
         let request = URLRequest(url: URL(string: url)!)
         
