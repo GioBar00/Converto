@@ -43,9 +43,10 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
         // Do any additional setup after loading the view.
         CurrenciesTableViewController.chooseHandler = self
         btnExchange.imageView?.contentMode = .scaleAspectFit
-        btnCurrencyLeft.imageView?.contentMode = .scaleAspectFit
-        btnCurrencyRight.imageView?.contentMode = .scaleAspectFit
+        btnCurrencyLeft.imageView?.contentMode = .scaleAspectFill
+        btnCurrencyRight.imageView?.contentMode = .scaleAspectFill
         lblExchangeRate.text = ""
+        lblResult.isHidden = true
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.view.addGestureRecognizer(tap)
@@ -70,6 +71,7 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
         loadCurrencies()
         textFieldQuantity.text = ""
         updateResults()
+        StaticClass.exchangeRateReload?.reloadData()
     }
     
     func updateExchangeValue(val : Double) {
@@ -77,7 +79,7 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
             UIViewController.removeSpinner(spinner: s)
         }
         exchangeValue = val
-        lblExchangeRate.text = "Exchange rate:\n" + String(format:"%.5f", exchangeValue)
+        lblExchangeRate.text = "Exchange:\n" + String(format:"%.5f", exchangeValue)
     }
     
     func loadCurrencies() {
@@ -151,10 +153,12 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
         else {
             updateResults()
         }
+        lblResult.isHidden = textFieldQuantity.text == ""
     }
     
     @IBAction func textFieldBegin(_ sender: Any) {
         buttomView.isHidden = true
+        lblResult.isHidden = textFieldQuantity.text == ""
     }
     
     func currencyChoosen(currency c: Currency?) {

@@ -9,13 +9,13 @@
 import UIKit
 import SwiftChart
 
-class ExchangeHistoryViewController: UIViewController, ChartDelegate {
+class ExchangeHistoryViewController: UIViewController, ChartDelegate, DataReloadHandler {
 
     @IBOutlet var timeButtons: [UIButton]!
     @IBOutlet weak var chart: Chart!
     @IBOutlet weak var lblValue: UILabel!
+    @IBOutlet weak var errorView: UIView!
     
-    //METTERE COME VALORE SEMPRE QUELLO DEL GIORNO PRIMA COME PRIMO VALORE
     var serieData: [Double] = []
     var labels: [Double] = []
     var labelsAsString: Array<String> = []
@@ -26,40 +26,26 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate {
     
     var sv : UIView? = nil
     
+    var loading = false
+    var timeoutTimer : Timeout? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        StaticClass.exchangeRateReload = self
         lblValue.text = ""
         chart.delegate = self
         chart.hideHighlightLineOnTouchEnd = true
         chart.xLabelsTextAlignment = .center
         chart.labelFont = UIFont.init(name: "GillSans", size: 12)
         
+        self.view.bringSubviewToFront(errorView)
+        errorView.isHidden = true
+        
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         clearChart()
-        
-        // Date formatter to retrieve the month names
-        let form = DateFormatter()
-        form.dateFormat = "MM"
-
-        
-        
-        // Configure chart layout
-        
-        //chart.lineWidth = 0.5
-        
-        
-        
-        //chart.yLabelsOnRightSide = true
-        // Add some padding above the x-axis
-        //chart.minY = serieData.min()! - 5
-//        chart.minY = 0
-
-        
-        
-        
         GetHistory(type: historyType)
         
         
@@ -74,8 +60,28 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate {
         chart.yLabelsFormatter = { String(format:"%.2f", $1) + " " + ConvertoViewController.rightCurrency.symbol }
     }
     
+    func showError() {
+        if loading {
+            clearTimeout()
+        }
+        errorView.isHidden = !loading
+        chart.isHidden = loading
+        loading = false
+        if let spinner = sv {
+            UIViewController.removeSpinner(spinner: spinner)
+        }
+    }
+    
+    func clearTimeout() {
+        timeoutTimer?.cancel()
+        timeoutTimer = nil
+    }
+    
     func parseData(_ data : [Date : Double]) {
+        loading = false
+        clearTimeout()
         clearChart()
+        errorView.isHidden = true
         let dates = data.keys.sorted()
         print("TIPO")
         print(historyType.rawValue)
@@ -148,6 +154,10 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate {
     }
     
     func GetHistory(type : HistoryType) {
+        loading = true
+        timeoutTimer = Timeout(10) {
+            self.showError()
+        }
         ApiManager.Instance.GetHistory(base: ConvertoViewController.leftCurrency, symbol: ConvertoViewController.rightCurrency, from: GetDate(offset: type), to: Date(), completion: parseData(_:))
     }
     
@@ -171,6 +181,8 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate {
         let btn = sender as! UIButton
         select(button: btn, true)
         deselectOthers(btn)
+        chart.isHidden = false
+        errorView.isHidden = true
         sv = UIViewController.displaySpinner(onView: chart)
         historyType = HistoryType(rawValue: btn.tag)!
         GetHistory(type: historyType)
@@ -196,7 +208,7 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate {
             numberFormatter.minimumFractionDigits = 2
             numberFormatter.maximumFractionDigits = 5
             var s : String = numberFormatter.string(from: NSNumber(value: value))!
-            if s.first == Character(",") {
+            if s.first == Character(",") || s.first == Character(".") {
                 s = "0" + s
             }
             lblValue.text = s
@@ -210,5 +222,13 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate {
     
     func didEndTouchingChart(_ chart: Chart) {
         lblValue.text = ""
+    }
+    
+    func reloadData() {
+        select(button: timeButtons[0], true)
+        deselectOthers(timeButtons[0])
+        historyType = .OneMonth
+        chart.isHidden = false
+        GetHistory(type: historyType)
     }
 }

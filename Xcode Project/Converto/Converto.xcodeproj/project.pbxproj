@@ -21,6 +21,9 @@
 		D5B41EE221F63D720071A6EB /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B41EE121F63D720071A6EB /* Protocols.swift */; };
 		D5B5C4E021F77BF3006629BF /* ExchangeHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5C4DF21F77BF3006629BF /* ExchangeHistoryViewController.swift */; };
 		D5B5C4E221F7AD1B006629BF /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5C4E121F7AD1B006629BF /* Enums.swift */; };
+		D5FD802621F866B20016B204 /* Static.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FD802521F866B20016B204 /* Static.swift */; };
+		D5FD802A21F873C80016B204 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FD802921F873C80016B204 /* ErrorViewController.swift */; };
+		D5FD802C21F87EE80016B204 /* Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FD802B21F87EE80016B204 /* Timeout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,9 @@
 		D5B41EE121F63D720071A6EB /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		D5B5C4DF21F77BF3006629BF /* ExchangeHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeHistoryViewController.swift; sourceTree = "<group>"; };
 		D5B5C4E121F7AD1B006629BF /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		D5FD802521F866B20016B204 /* Static.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Static.swift; sourceTree = "<group>"; };
+		D5FD802921F873C80016B204 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
+		D5FD802B21F87EE80016B204 /* Timeout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,8 @@
 				D5B41EE121F63D720071A6EB /* Protocols.swift */,
 				D515E9AF21F6FB160090D7EA /* Extensions.swift */,
 				D5B5C4E121F7AD1B006629BF /* Enums.swift */,
+				D5FD802521F866B20016B204 /* Static.swift */,
+				D5FD802B21F87EE80016B204 /* Timeout.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -92,6 +100,7 @@
 				D5B41EDD21F627C20071A6EB /* CurrenciesTableViewController.swift */,
 				D5B41EDF21F635B90071A6EB /* CurrencyTableViewCell.swift */,
 				D5B5C4DF21F77BF3006629BF /* ExchangeHistoryViewController.swift */,
+				D5FD802921F873C80016B204 /* ErrorViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -249,10 +258,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5B41EDE21F627C20071A6EB /* CurrenciesTableViewController.swift in Sources */,
+				D5FD802A21F873C80016B204 /* ErrorViewController.swift in Sources */,
 				D54DBB9621F2358A00FCA613 /* Currency.swift in Sources */,
+				D5FD802621F866B20016B204 /* Static.swift in Sources */,
 				D5B5C4E221F7AD1B006629BF /* Enums.swift in Sources */,
 				D5B5C4E021F77BF3006629BF /* ExchangeHistoryViewController.swift in Sources */,
 				D5B41EE221F63D720071A6EB /* Protocols.swift in Sources */,
+				D5FD802C21F87EE80016B204 /* Timeout.swift in Sources */,
 				D515E9B021F6FB160090D7EA /* Extensions.swift in Sources */,
 				D54DBB9421F2317B00FCA613 /* Api.swift in Sources */,
 				D569075921EDD0C200E0C987 /* ConvertoViewController.swift in Sources */,

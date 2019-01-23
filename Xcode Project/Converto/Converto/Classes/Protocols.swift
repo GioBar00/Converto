@@ -17,3 +17,7 @@ protocol CurrencyChooseHandler {
     func currencyToRemove() -> Currency?
     func selectedCurrency() -> Currency
 }
+
+protocol DataReloadHandler {
+    func reloadData()
+}
