@@ -57,7 +57,17 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate, DataReload
         labels = []
         labelsAsString = []
         
-        chart.yLabelsFormatter = { String(format:"%.2f", $1) + " " + ConvertoViewController.rightCurrency.symbol }
+        //chart.yLabelsFormatter = { String(format:"%.5f", $1) + " " + ConvertoViewController.rightCurrency.symbol }
+        chart.yLabelsFormatter = {
+            let numberFormatter = NumberFormatter()
+            numberFormatter.minimumFractionDigits = 2
+            numberFormatter.maximumFractionDigits = 5
+            var s : String = numberFormatter.string(from: NSNumber(value: $1))!
+            if s.first == Character(",") || s.first == Character(".") {
+                s = "0" + s
+            }
+            return s + " " + ConvertoViewController.rightCurrency.symbol
+        }
     }
     
     func showError() {
@@ -106,12 +116,13 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate, DataReload
             return self.labelsAsString[labelIndex]
         }
         
-        chart.minY = serieData.min()! - 0.01
+        chart.minY = serieData.min()! - ConvertoViewController.exchangeValue / 10
         
         chart.add(series)
         
         if let spinner = sv {
             UIViewController.removeSpinner(spinner: spinner)
+            sv = nil
         }
     }
     
@@ -158,7 +169,9 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate, DataReload
         timeoutTimer = Timeout(10) {
             self.showError()
         }
-        ApiManager.Instance.GetHistory(base: ConvertoViewController.leftCurrency, symbol: ConvertoViewController.rightCurrency, from: GetDate(offset: type), to: Date(), completion: parseData(_:))
+        ApiManager.Instance.GetHistory(base: ConvertoViewController.leftCurrency, symbol: ConvertoViewController.rightCurrency, from: GetDate(offset: type), to: Date(), completion: parseData(_:), onError: {
+            self.showError()
+        })
     }
     
     func GetDate(offset type: HistoryType) -> Date {
@@ -188,7 +201,7 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate, DataReload
                 UIViewController.removeSpinner(spinner: spin)
             }
         }
-        sv = UIViewController.displaySpinner(onView: chart)
+        sv = UIViewController.displaySpinnerGray(onView: chart)
         historyType = HistoryType(rawValue: btn.tag)!
         GetHistory(type: historyType)
     }
@@ -207,18 +220,20 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate, DataReload
     }
     
     func didTouchChart(_ chart: Chart, indexes: [Int?], x: Double, left: CGFloat) {
-        if let value = chart.valueForSeries(0, atIndex: indexes[0]) {
-            
-            let numberFormatter = NumberFormatter()
-            numberFormatter.minimumFractionDigits = 2
-            numberFormatter.maximumFractionDigits = 5
-            var s : String = numberFormatter.string(from: NSNumber(value: value))!
-            if s.first == Character(",") || s.first == Character(".") {
-                s = "0" + s
+        if indexes.count > 0  {
+            if let value = chart.valueForSeries(0, atIndex: indexes[0]) {
+                
+                let numberFormatter = NumberFormatter()
+                numberFormatter.minimumFractionDigits = 5
+                numberFormatter.maximumFractionDigits = 5
+                var s : String = numberFormatter.string(from: NSNumber(value: value))!
+                if s.first == Character(",") || s.first == Character(".") {
+                    s = "0" + s
+                }
+                lblValue.text = s
             }
-            lblValue.text = s
-            
         }
+        
     }
     
     func didFinishTouchingChart(_ chart: Chart) {
@@ -234,6 +249,8 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate, DataReload
         deselectOthers(timeButtons[0])
         historyType = .OneMonth
         chart.isHidden = false
+        errorView.isHidden = true
+        sv = UIViewController.displaySpinnerGray(onView: chart)
         GetHistory(type: historyType)
     }
 }

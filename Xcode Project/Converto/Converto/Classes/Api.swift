@@ -14,7 +14,7 @@ class ApiManager {
     
     let apiUrl = "https://api.exchangeratesapi.io/"
     
-    func GetExchange(base : Currency, to : Currency, completion: @escaping (Double)->()) {
+    func GetExchange(base : Currency, to : Currency, completion: @escaping (Double)->(), onError: @escaping () -> ()) {
         var url = apiUrl + "latest/?"
         url += "base=" + base.code + "&"
         url += "symbols=" + to.code
@@ -26,10 +26,14 @@ class ApiManager {
         
         
         let request = URLRequest(url: URL(string: url)!)
-        
         URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
             
-            guard let data = data, error == nil else { return }
+            guard let data = data, error == nil else {
+                DispatchQueue.main.async {
+                    onError()
+                }
+                return
+            }
             
             do {
                 let response = try JSONDecoder().decode(Response.self, from: data)
@@ -42,12 +46,17 @@ class ApiManager {
             } catch let error as NSError {
                 print("---ERRORE get Json---")
                 print(error)
+                DispatchQueue.main.async {
+                    onError()
+                }
             }
             
         }).resume()
+        
+        
     }
     
-    func GetHistory(base: Currency, symbol symb: Currency, from: Date, to: Date, completion: @escaping ([Date : Double])->()) {
+    func GetHistory(base: Currency, symbol symb: Currency, from: Date, to: Date, completion: @escaping ([Date : Double])->(), onError: @escaping () -> ()) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
@@ -66,7 +75,12 @@ class ApiManager {
         
         URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
             
-            guard let data = data, error == nil else { return }
+            guard let data = data, error == nil else {
+                DispatchQueue.main.async {
+                    onError()
+                }
+                return
+            }
             
             do {
                 let response = try JSONDecoder().decode(ResponseHistory.self, from: data)
@@ -84,6 +98,9 @@ class ApiManager {
             } catch let error as NSError {
                 print("---ERRORE get Json---")
                 print(error)
+                DispatchQueue.main.async {
+                    onError()
+                }
             }
             
         }).resume()

@@ -24,9 +24,17 @@ extension String {
 
 extension UIViewController {
     class func displaySpinner(onView : UIView) -> UIView {
+        return displaySpinner(onView: onView, style: .whiteLarge, viewColor: UIColor.init(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.5))
+    }
+    
+    class func displaySpinnerGray(onView : UIView) -> UIView {
+        return displaySpinner(onView: onView, style: .gray, viewColor: UIColor.init(red: 0.3, green: 0.3, blue: 0.3, alpha: 0))
+    }
+    
+    class func displaySpinner(onView : UIView, style: UIActivityIndicatorView.Style, viewColor : UIColor) -> UIView {
         let spinnerView = UIView.init(frame: onView.bounds)
-        spinnerView.backgroundColor = UIColor.init(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.5)
-        let ai = UIActivityIndicatorView.init(style: .whiteLarge)
+        spinnerView.backgroundColor = viewColor
+        let ai = UIActivityIndicatorView.init(style: style)
         ai.startAnimating()
         ai.center = spinnerView.center
         

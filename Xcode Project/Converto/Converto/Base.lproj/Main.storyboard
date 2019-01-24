@@ -374,7 +374,7 @@
                                 <rect key="frame" x="0.0" y="37.999999999999986" width="398" height="252.66666666666663"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="KbT-Pj-xmY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="KbT-Pj-xmY">
                                 <rect key="frame" x="0.0" y="0.0" width="79.666666666666671" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="wtC-PL-JZP"/>
@@ -460,7 +460,7 @@
             <objects>
                 <tableViewController title="Valute" id="VwV-5s-fAI" customClass="CurrenciesTableViewController" customModule="Converto" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="trg-zj-Xqz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="613.66666666666674"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>

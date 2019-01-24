@@ -13,6 +13,8 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     static var leftCurrency = Currencies.currencies.first(where: {$0.code == "EUR"}) ?? Currencies.currencies[0]
     static var rightCurrency = Currencies.currencies.first(where: {$0.code == "USD"}) ?? Currencies.currencies[1]
     
+    static var exchangeValue : Double = 1.2
+    
     @IBOutlet weak var btnCurrencyLeft: UIButton!
     @IBOutlet weak var lblLeftCurrencyName: UILabel!
     @IBOutlet weak var lblLeftCode: UILabel!
@@ -30,11 +32,13 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     @IBOutlet weak var lblResult: UILabel!
     @IBOutlet weak var lblExchangeRate: UILabel!
     
+    let maxLenght : Int = 13
     
     var modifying = false
     var modifyingLeft = false
     
-    var exchangeValue : Double = 1.2
+    var timeoutTimer : Timeout? = nil
+    var loading = false
     
     var sv : UIView? = nil
     
@@ -64,22 +68,41 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     }
     
     func getExchangeValues() {
+        loading = true
+        timeoutTimer = Timeout(30) {
+            self.showError()
+        }
+        if let s = sv {
+            UIViewController.removeSpinner(spinner: s)
+        }
         sv = UIViewController.displaySpinner(onView: self.view)
         ApiManager.Instance.GetExchange(base: ConvertoViewController.leftCurrency, to: ConvertoViewController.rightCurrency, completion: { val in
             self.updateExchangeValue(val: val)
+            StaticClass.exchangeRateReload?.reloadData()
+        }, onError: {
+            self.showError()
         })
         loadCurrencies()
         textFieldQuantity.text = ""
         updateResults()
-        StaticClass.exchangeRateReload?.reloadData()
     }
     
     func updateExchangeValue(val : Double) {
         if let s = sv {
             UIViewController.removeSpinner(spinner: s)
+            sv = nil
         }
-        exchangeValue = val
-        lblExchangeRate.text = "Exchange:\n" + String(format:"%.5f", exchangeValue)
+        loading = false
+        clearTimeout()
+        ConvertoViewController.exchangeValue = val
+        let numberFormatter = NumberFormatter()
+        numberFormatter.minimumFractionDigits = 2
+        numberFormatter.maximumFractionDigits = 5
+        var s : String = numberFormatter.string(from: NSNumber(value: ConvertoViewController.exchangeValue))!
+        if s.first == Character(",") || s.first == Character(".") {
+            s = "0" + s
+        }
+        lblExchangeRate.text = "Exchange:\n" + s
     }
     
     func loadCurrencies() {
@@ -96,7 +119,7 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     func updateResults() {
         var res = 0 as Double
         if let value = Double(textFieldQuantity.text ?? "0") {
-            res = value * exchangeValue
+            res = value * ConvertoViewController.exchangeValue
         }
         lblResult.text = String(format:"%.2f", res) + " " + String(ConvertoViewController.rightCurrency.symbol)
     }
@@ -147,7 +170,7 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
                 }
             }
         }
-        if dotNum > 1  || num > 2 {
+        if dotNum > 1  || num > 2 || textFieldQuantity.text?.count ?? 0 > maxLenght{
             textFieldQuantity.text?.removeLast()
         }
         else {
@@ -193,5 +216,24 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
             return ConvertoViewController.leftCurrency
         }
         return ConvertoViewController.rightCurrency
+    }
+    
+    func showError() {
+        if loading {
+            clearTimeout()
+        }
+        loading = false
+        let alert = UIAlertController(title: "Attenzione", message: "Non è stato possibile caricare i dati del cambio valuta.\nVerificare che la connessione sia presente e premere riprova.", preferredStyle: UIAlertController.Style.alert)
+        let action = UIAlertAction(title: "Riprova", style: .default) { (nil) in
+            self.getExchangeValues()
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func clearTimeout() {
+        timeoutTimer?.cancel()
+        timeoutTimer = nil
     }
 }
