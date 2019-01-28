@@ -81,7 +81,10 @@ extension Date {
         
         assert(weekdaysName.contains(dayName), "weekday symbol should be in form \(weekdaysName)")
         
-        let searchWeekdayIndex = weekdaysName.index(of: dayName)! + 1
+        var searchWeekdayIndex = weekdaysName.index(of: dayName)! + 1
+        if searchWeekdayIndex > 7 {
+            searchWeekdayIndex = 1
+        }
         
         let calendar = Calendar(identifier: .gregorian)
         
@@ -101,6 +104,16 @@ extension Date {
         return date!
     }
     
+    func toWeekDay() -> Weekday {
+        let calendar = Calendar(identifier: .gregorian)
+        var index = calendar.component(.weekday, from: self) - 1
+        if index < 0 {
+            index = 6
+        }
+        let weekdaysenglish = getWeekDaysInEnglish().map { $0.lowercased() }
+        let name = weekdaysenglish[index]
+        return Weekday(rawValue: name)!
+    }
 }
 
 // MARK: Helper methods

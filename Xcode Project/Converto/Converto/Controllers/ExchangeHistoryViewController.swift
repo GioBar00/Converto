@@ -132,11 +132,18 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate, DataReload
         dateForm.dateFormat = "MMM"
         switch historyType {
         case .OneMonth:
-            dateForm.dateFormat = "d/M/yyyy"
+            dateForm.dateFormat = "d/M/yy"
             if labels.count == 0 {
                 return dateForm.string(from: date)
             }
-            return dateForm.string(from: date.previous(.monday, considerToday: true))
+            if let lastDate = dateForm.date(from: labelsAsString.last!) {
+                let nextDate = calendar.date(byAdding: .day, value: 7, to: lastDate)!
+                if date < nextDate {
+                    return labelsAsString.last!
+                }
+                return dateForm.string(from: nextDate)
+            }
+            return dateForm.string(from: date)
         case .SixMonth:
             return dateForm.string(from: date)
         case .OneYear:
@@ -248,6 +255,7 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate, DataReload
         select(button: timeButtons[0], true)
         deselectOthers(timeButtons[0])
         historyType = .OneMonth
+        chart.removeAllSeries()
         chart.isHidden = false
         errorView.isHidden = true
         sv = UIViewController.displaySpinnerGray(onView: chart)
