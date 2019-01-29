@@ -107,6 +107,15 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate, DataReload
             
             i += 1
         }
+        if historyType != .OneMonth  && labels.count > 6{
+            let difference = labels[4] - labels[3]
+            if labels[1] - labels[0] < difference / 2 {
+                labelsAsString[0] = ""
+            }
+            if labels[6] - labels[5] < difference / 2 {
+                labelsAsString[6] = ""
+            }
+        }
         
         let series = ChartSeries(serieData)
         series.area = true
@@ -255,7 +264,6 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate, DataReload
         select(button: timeButtons[0], true)
         deselectOthers(timeButtons[0])
         historyType = .OneMonth
-        chart.removeAllSeries()
         chart.isHidden = false
         errorView.isHidden = true
         sv = UIViewController.displaySpinnerGray(onView: chart)

@@ -11,11 +11,13 @@ import UIKit
 class CreditsViewController: UIViewController {
     
     @IBOutlet var labels: [UILabel]!
+    @IBOutlet weak var lblCopyright: UILabel!
     
     let links = ["https://www.flaticon.com/", "http://www.freepik.com/", "https://www.flaticon.com/authors/dmitri13", "https://www.flaticon.com/authors/vaadin", "https://github.com/gpbl/SwiftChart", "https://exchangeratesapi.io"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        lblCopyright.text = "Copyright © 2019 - Converto - Giovanni Barbiero\nAll rights reserved"
     }
 
     @IBAction func linkClick(_ sender: Any) {

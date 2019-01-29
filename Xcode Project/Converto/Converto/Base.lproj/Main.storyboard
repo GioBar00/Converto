@@ -349,8 +349,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="graph powered by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAy-zN-0Wq">
-                                <rect key="frame" x="7.9999999999999929" y="242" width="124.33333333333331" height="32"/>
+                            <label opaque="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Graph powered by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAy-zN-0Wq">
+                                <rect key="frame" x="8" y="242" width="129.66666666666666" height="32"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -361,14 +361,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="api powered by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iuc-bc-h7W">
-                                <rect key="frame" x="8" y="327" width="105.66666666666667" height="32"/>
+                            <label opaque="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="API powered by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iuc-bc-h7W">
+                                <rect key="frame" x="8" y="327" width="110.66666666666667" height="32"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nl7-IR-lct">
-                                <rect key="frame" x="136.33333333333334" y="242" width="80" height="32"/>
+                                <rect key="frame" x="141.66666666666666" y="242" width="80" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="0Pd-id-1Ak"/>
                                 </constraints>
@@ -381,7 +381,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mj8-Rq-sjm">
-                                <rect key="frame" x="117.66666666666669" y="327" width="140" height="32"/>
+                                <rect key="frame" x="122.66666666666669" y="327" width="140" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="fHE-q7-fAk"/>
                                 </constraints>
@@ -393,11 +393,18 @@
                                     <action selector="linkClick:" destination="wSm-6G-XcU" eventType="touchUpInside" id="piT-rS-bmc"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2019 - Converto - Giovanni Barbiero\nAll rights reserved" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="7F1-6k-yTd">
+                                <rect key="frame" x="8" y="530" width="398" height="34.666666666666629"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="w9u-gh-3JA" firstAttribute="leading" secondItem="Omn-9n-lrj" secondAttribute="leading" constant="8" id="096-iU-rAT"/>
                             <constraint firstItem="Mj8-Rq-sjm" firstAttribute="leading" secondItem="Iuc-bc-h7W" secondAttribute="trailing" constant="4" id="1y9-P6-e9L"/>
+                            <constraint firstItem="Omn-9n-lrj" firstAttribute="bottom" secondItem="7F1-6k-yTd" secondAttribute="bottom" id="8po-e2-2k3"/>
                             <constraint firstItem="Iuc-bc-h7W" firstAttribute="top" secondItem="5Ad-Dp-ZUc" secondAttribute="bottom" constant="8" id="Azs-8s-NQ2"/>
                             <constraint firstItem="Omn-9n-lrj" firstAttribute="trailing" secondItem="w9u-gh-3JA" secondAttribute="trailing" constant="8" id="Bsd-Zb-37H"/>
                             <constraint firstItem="aAy-zN-0Wq" firstAttribute="leading" secondItem="Omn-9n-lrj" secondAttribute="leading" constant="8" id="DBH-Wq-aWg"/>
@@ -410,6 +417,7 @@
                             <constraint firstItem="qX9-6X-1uf" firstAttribute="top" secondItem="5hd-eq-lLG" secondAttribute="bottom" constant="16" id="Yfc-nY-EOO"/>
                             <constraint firstItem="5Ad-Dp-ZUc" firstAttribute="top" secondItem="aAy-zN-0Wq" secondAttribute="bottom" constant="16" id="aa6-mI-rNX"/>
                             <constraint firstItem="qX9-6X-1uf" firstAttribute="leading" secondItem="Omn-9n-lrj" secondAttribute="leading" constant="8" id="ahk-n9-NWu"/>
+                            <constraint firstItem="7F1-6k-yTd" firstAttribute="leading" secondItem="Omn-9n-lrj" secondAttribute="leading" constant="8" id="cy2-Ly-0oc"/>
                             <constraint firstItem="aAy-zN-0Wq" firstAttribute="top" secondItem="qX9-6X-1uf" secondAttribute="bottom" constant="8" id="dHG-wh-Ffo"/>
                             <constraint firstItem="vkW-RS-LFM" firstAttribute="top" secondItem="w9u-gh-3JA" secondAttribute="bottom" constant="8" id="eGc-b7-iBB"/>
                             <constraint firstItem="5hd-eq-lLG" firstAttribute="top" secondItem="grN-LZ-yrJ" secondAttribute="bottom" constant="8" id="f2B-7N-9io"/>
@@ -425,12 +433,14 @@
                             <constraint firstItem="Mj8-Rq-sjm" firstAttribute="height" secondItem="Iuc-bc-h7W" secondAttribute="height" id="r7i-cx-FBF"/>
                             <constraint firstItem="Omn-9n-lrj" firstAttribute="trailing" secondItem="5Ad-Dp-ZUc" secondAttribute="trailing" constant="8" id="tgY-sP-x1l"/>
                             <constraint firstItem="Omn-9n-lrj" firstAttribute="trailing" secondItem="vkW-RS-LFM" secondAttribute="trailing" constant="8" id="xCM-dw-WkA"/>
+                            <constraint firstItem="Omn-9n-lrj" firstAttribute="trailing" secondItem="7F1-6k-yTd" secondAttribute="trailing" constant="8" id="xvh-Iq-WNE"/>
                             <constraint firstItem="5Ad-Dp-ZUc" firstAttribute="leading" secondItem="Omn-9n-lrj" secondAttribute="leading" constant="8" id="z3A-Af-0SA"/>
                             <constraint firstItem="5hd-eq-lLG" firstAttribute="leading" secondItem="Omn-9n-lrj" secondAttribute="leading" constant="8" id="zcV-4o-Wso"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Omn-9n-lrj"/>
                     </view>
                     <connections>
+                        <outlet property="lblCopyright" destination="7F1-6k-yTd" id="5VJ-pW-iuN"/>
                         <outletCollection property="labels" destination="aAy-zN-0Wq" collectionClass="NSMutableArray" id="XlG-NJ-HvP"/>
                         <outletCollection property="labels" destination="Iuc-bc-h7W" collectionClass="NSMutableArray" id="93a-Xu-sta"/>
                     </connections>
