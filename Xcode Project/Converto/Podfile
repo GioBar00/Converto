@@ -7,6 +7,5 @@ target 'Converto' do
 
   # Pods for Converto
 pod "SwiftChart"
-pod 'LinkLabel'
 
 end
