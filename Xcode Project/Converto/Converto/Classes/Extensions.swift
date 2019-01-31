@@ -185,3 +185,23 @@ extension UITapGestureRecognizer {
     }
     
 }
+
+extension Double {
+    func toString(minimumFractionDigits min : Int, maximumFractionDigits max : Int) -> String{
+        let numberFormatter = NumberFormatter()
+        numberFormatter.minimumFractionDigits = min
+        numberFormatter.maximumFractionDigits = max
+        var s : String = numberFormatter.string(from: NSNumber(value: self))!
+        if s.first == Character(",") || s.first == Character(".") {
+            s = "0" + s
+        }
+        return s
+    }
+}
+
+extension String {
+    func toDouble() -> Double? {
+        let numString = self.replacingOccurrences(of: ",", with: ".")
+        return Double(numString)
+    }
+}

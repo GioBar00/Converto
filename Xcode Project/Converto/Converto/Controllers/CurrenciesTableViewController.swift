@@ -12,9 +12,9 @@ class CurrenciesTableViewController: UITableViewController, CurrencySelectHandle
 
     static var chooseHandler : CurrencyChooseHandler? = nil
     
-    var currencies = Currencies.currencies
+    var currencies = Currencies.getCurrencies()
     
-    var selecterCurrency = Currencies.currencies[0]
+    var selecterCurrency = Currencies.getCurrencies()[0]
     
     var alreadyCalled = false
     
@@ -27,7 +27,7 @@ class CurrenciesTableViewController: UITableViewController, CurrencySelectHandle
                 currencies.remove(at: index)
             }
         }
-        selecterCurrency = CurrenciesTableViewController.chooseHandler?.selectedCurrency() ?? Currencies.currencies[0]
+        selecterCurrency = CurrenciesTableViewController.chooseHandler?.selectedCurrency() ?? Currencies.getCurrencies()[0]
     }
     
     override func viewWillDisappear(_ animated: Bool) {

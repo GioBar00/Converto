@@ -10,8 +10,8 @@ import UIKit
 
 class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     
-    static var leftCurrency = Currencies.currencies.first(where: {$0.code == "EUR"}) ?? Currencies.currencies[0]
-    static var rightCurrency = Currencies.currencies.first(where: {$0.code == "USD"}) ?? Currencies.currencies[1]
+    static var leftCurrency = Currencies.getCurrencies().first(where: {$0.code == "EUR"}) ?? Currencies.getCurrencies()[0]
+    static var rightCurrency = Currencies.getCurrencies().first(where: {$0.code == "USD"}) ?? Currencies.getCurrencies()[1]
     
     static var exchangeValue : Double = 1.2
     
@@ -50,7 +50,8 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
         btnCurrencyLeft.imageView?.contentMode = .scaleAspectFill
         btnCurrencyRight.imageView?.contentMode = .scaleAspectFill
         lblExchangeRate.text = ""
-        lblResult.isHidden = true
+        lblResult.text = 0.0.toString(minimumFractionDigits: 2, maximumFractionDigits: 2)
+        textFieldQuantity.text = 1.0.toString(minimumFractionDigits: 2, maximumFractionDigits: 2)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.view.addGestureRecognizer(tap)
@@ -83,8 +84,25 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
             self.showError()
         })
         loadCurrencies()
-        textFieldQuantity.text = ""
-        updateResults()
+    }
+    
+    func getNumLabel() -> String {
+        var s = ""
+        var numAfterDot = 0
+        
+        for x in lblResult.text ?? "0.00" {
+            if numAfterDot > 3 {
+                return s
+            }
+            s += String(x)
+            if x == Character(".") || x == Character(","){
+                numAfterDot += 1
+            }
+            if numAfterDot != 0 {
+                numAfterDot += 1
+            }
+        }
+        return "1"
     }
     
     func updateExchangeValue(val : Double) {
@@ -95,14 +113,9 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
         loading = false
         clearTimeout()
         ConvertoViewController.exchangeValue = val
-        let numberFormatter = NumberFormatter()
-        numberFormatter.minimumFractionDigits = 2
-        numberFormatter.maximumFractionDigits = 5
-        var s : String = numberFormatter.string(from: NSNumber(value: ConvertoViewController.exchangeValue))!
-        if s.first == Character(",") || s.first == Character(".") {
-            s = "0" + s
-        }
-        lblExchangeRate.text = "Exchange:\n" + s
+        let s = ConvertoViewController.exchangeValue.toString(minimumFractionDigits: 2, maximumFractionDigits: 5)
+        lblExchangeRate.text = NSLocalizedString("Exchange:\n", comment: "titolo exchange") + s
+        updateResults()
     }
     
     func loadCurrencies() {
@@ -118,10 +131,10 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     
     func updateResults() {
         var res = 0 as Double
-        if let value = Double(textFieldQuantity.text ?? "0") {
+        if let value = textFieldQuantity.text?.toDouble() {
             res = value * ConvertoViewController.exchangeValue
         }
-        lblResult.text = String(format:"%.2f", res) + " " + String(ConvertoViewController.rightCurrency.symbol)
+        lblResult.text = res.toString(minimumFractionDigits: 2, maximumFractionDigits: 2) + " " + String(ConvertoViewController.rightCurrency.symbol)
     }
     
     @IBAction func btnSwitch(_ sender: Any) {
@@ -129,6 +142,12 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
         let temp = ConvertoViewController.rightCurrency
         ConvertoViewController.rightCurrency = ConvertoViewController.leftCurrency
         ConvertoViewController.leftCurrency = temp
+        if textFieldQuantity.text?.toDouble() ?? 1 != 1 {
+            textFieldQuantity.text = getNumLabel()
+        }
+        else {
+            textFieldQuantity.text = 1.0.toString(minimumFractionDigits: 2, maximumFractionDigits: 2)
+        }
         getExchangeValues()
     }
     
@@ -151,7 +170,7 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
         var num = 0
         var dotfound = false
         for c in textFieldQuantity.text ?? "" {
-            if c == Character(".") {
+            if c == Character(".") || c == Character(",") {
                 dotNum += 1
                 dotfound = true
             }
@@ -164,7 +183,7 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
         let text = textFieldQuantity.text ?? ""
         if text.count > 1 {
             if text[0] == Character("0") {
-                if text[1] != Character(".") {
+                if text[1] != Character(".") && text[1] != Character(",") {
                     textFieldQuantity.text?.removeFirst()
                     return
                 }
@@ -176,12 +195,12 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
         else {
             updateResults()
         }
-        lblResult.isHidden = textFieldQuantity.text == ""
+        //lblResult.isHidden = textFieldQuantity.text == ""
     }
     
     @IBAction func textFieldBegin(_ sender: Any) {
         buttomView.isHidden = true
-        lblResult.isHidden = textFieldQuantity.text == ""
+        //lblResult.isHidden = textFieldQuantity.text == ""
     }
     
     func currencyChoosen(currency c: Currency?) {
@@ -193,12 +212,15 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
                 ConvertoViewController.leftCurrency = currency
                 if ConvertoViewController.leftCurrency.code == ConvertoViewController.rightCurrency.code {
                     if ConvertoViewController.leftCurrency.code == "EUR" {
-                        ConvertoViewController.rightCurrency = Currencies.currencies.first(where: {$0.code == "USD"}) ?? Currencies.currencies[1]
+                        ConvertoViewController.rightCurrency = Currencies.getCurrencies().first(where: {$0.code == "USD"}) ?? Currencies.getCurrencies()[1]
                     }
                     else {
-                        ConvertoViewController.rightCurrency = Currencies.currencies.first(where: {$0.code == "EUR"}) ?? Currencies.currencies[0]
+                        ConvertoViewController.rightCurrency = Currencies.getCurrencies().first(where: {$0.code == "EUR"}) ?? Currencies.getCurrencies()[0]
                     }
                 }
+            }
+            if textFieldQuantity.text ?? "" == "" {
+                textFieldQuantity.text = 1.0.toString(minimumFractionDigits: 2, maximumFractionDigits: 2)
             }
             getExchangeValues()
         }
@@ -223,8 +245,8 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
             clearTimeout()
         }
         loading = false
-        let alert = UIAlertController(title: "Attenzione", message: "Non è stato possibile caricare i dati del cambio valuta.\nVerificare che la connessione sia presente e premere riprova.", preferredStyle: UIAlertController.Style.alert)
-        let action = UIAlertAction(title: "Riprova", style: .default) { (nil) in
+        let alert = UIAlertController(title: NSLocalizedString("Warning", comment: "titolo"), message: NSLocalizedString("It wasn't possible to load the exchange value.\nCheck if there is connection and try again.", comment: "messaggio"), preferredStyle: UIAlertController.Style.alert)
+        let action = UIAlertAction(title: NSLocalizedString("Try again", comment: "button"), style: .default) { (nil) in
             self.getExchangeValues()
         }
         alert.addAction(action)

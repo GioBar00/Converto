@@ -1,0 +1,135 @@
+
+/* Class = "UIButton"; normalTitle = "Dmitri13"; ObjectID = "0y9-OC-4GP"; */
+"0y9-OC-4GP.normalTitle" = "Dmitri13";
+
+/* Class = "UILabel"; text = "icon made by"; ObjectID = "1S6-GD-d1q"; */
+"1S6-GD-d1q.text" = "icona fatta da";
+
+/* Class = "UILabel"; text = "Peso filippino"; ObjectID = "1wI-GQ-mKA"; */
+"1wI-GQ-mKA.text" = "Peso filippino";
+
+/* Class = "UILabel"; text = "Euro"; ObjectID = "3I5-Sl-dXe"; */
+"3I5-Sl-dXe.text" = "Euro";
+
+/* Class = "UILabel"; text = "Api"; ObjectID = "5Ad-Dp-ZUc"; */
+"5Ad-Dp-ZUc.text" = "Api";
+
+/* Class = "UIButton"; normalTitle = "Freepik"; ObjectID = "6rR-ho-IjJ"; */
+"6rR-ho-IjJ.normalTitle" = "Freepik";
+
+/* Class = "UILabel"; text = "icon made by"; ObjectID = "707-4G-XgA"; */
+"707-4G-XgA.text" = "icona fatta da";
+
+/* Class = "UILabel"; text = "Copyright © 2019 - Converto - Giovanni Barbiero\\nAll rights reserved"; ObjectID = "7F1-6k-yTd"; */
+"7F1-6k-yTd.text" = "Copyright © 2019 - Converto - Giovanni Barbiero\\nAll rights reserved";
+
+/* Class = "UIButton"; normalTitle = "1 m"; ObjectID = "7Xb-TW-Vx1"; */
+"7Xb-TW-Vx1.normalTitle" = "1 m";
+
+/* Class = "UILabel"; text = "from"; ObjectID = "9I6-yE-ZrY"; */
+"9I6-yE-ZrY.text" = "da";
+
+/* Class = "UIButton"; normalTitle = "6 m"; ObjectID = "Cc2-fm-vW2"; */
+"Cc2-fm-vW2.normalTitle" = "6 m";
+
+/* Class = "UILabel"; text = "API powered by"; ObjectID = "Iuc-bc-h7W"; */
+"Iuc-bc-h7W.text" = "API fatta da";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "KbT-Pj-xmY"; */
+"KbT-Pj-xmY.text" = "Label";
+
+/* Class = "UILabel"; text = "from"; ObjectID = "MKh-zd-pwL"; */
+"MKh-zd-pwL.text" = "da";
+
+/* Class = "UINavigationItem"; title = "Converto"; ObjectID = "MVt-67-L3D"; */
+"MVt-67-L3D.title" = "Converto";
+
+/* Class = "UIButton"; normalTitle = "Exchange Rates API"; ObjectID = "Mj8-Rq-sjm"; */
+"Mj8-Rq-sjm.normalTitle" = "Exchange Rates API";
+
+/* Class = "UILabel"; text = "from"; ObjectID = "O3P-yJ-pTb"; */
+"O3P-yJ-pTb.text" = "da";
+
+/* Class = "UILabel"; text = "PHP"; ObjectID = "PNl-MP-Kvf"; */
+"PNl-MP-Kvf.text" = "PHP";
+
+/* Class = "UILabel"; text = "EUR - Unione Europea"; ObjectID = "RTL-X6-Ufn"; */
+"RTL-X6-Ufn.text" = "EUR - Unione Europea";
+
+/* Class = "UILabel"; text = "Non è stato possibile caricare i dati."; ObjectID = "SR0-EZ-OWp"; */
+"SR0-EZ-OWp.text" = "Non è stato possibile caricare i dati.";
+
+/* Class = "UILabel"; text = "Euro"; ObjectID = "SmU-Vy-Blu"; */
+"SmU-Vy-Blu.text" = "Euro";
+
+/* Class = "UITextField"; placeholder = "Quantità"; ObjectID = "TMa-54-cDh"; */
+"TMa-54-cDh.placeholder" = "Quantità";
+
+/* Class = "UILabel"; text = "from"; ObjectID = "VUG-yE-jOv"; */
+"VUG-yE-jOv.text" = "da";
+
+/* Class = "UITableViewController"; title = "Valute"; ObjectID = "VwV-5s-fAI"; */
+"VwV-5s-fAI.title" = "Valute";
+
+/* Class = "UILabel"; text = "Graph powered by"; ObjectID = "aAy-zN-0Wq"; */
+"aAy-zN-0Wq.text" = "Grafico fatto utilizzando";
+
+/* Class = "UIButton"; normalTitle = "5 A"; ObjectID = "bIK-kh-7vK"; */
+"bIK-kh-7vK.normalTitle" = "5 A";
+
+/* Class = "UIButton"; normalTitle = "Freepik"; ObjectID = "cPs-Ri-7Rt"; */
+"cPs-Ri-7Rt.normalTitle" = "Freepik";
+
+/* Class = "UILabel"; text = "EUR"; ObjectID = "ewB-Sa-FjO"; */
+"ewB-Sa-FjO.text" = "EUR";
+
+/* Class = "UIButton"; normalTitle = "1 A"; ObjectID = "fDm-ay-8nn"; */
+"fDm-ay-8nn.normalTitle" = "1 A";
+
+/* Class = "UIButton"; normalTitle = "www.flaticons.com"; ObjectID = "gv5-rP-zIc"; */
+"gv5-rP-zIc.normalTitle" = "www.flaticons.com";
+
+/* Class = "UILabel"; text = "Icone"; ObjectID = "hb2-Oz-Yoz"; */
+"hb2-Oz-Yoz.text" = "Icone";
+
+/* Class = "UILabel"; text = "1.00 €"; ObjectID = "hh0-8S-Vli"; */
+"hh0-8S-Vli.text" = "1.00 €";
+
+/* Class = "UIButton"; normalTitle = "Vaadin"; ObjectID = "iR9-P5-7dX"; */
+"iR9-P5-7dX.normalTitle" = "Vaadin";
+
+/* Class = "UIButton"; normalTitle = "www.flaticons.com"; ObjectID = "idt-UY-6lQ"; */
+"idt-UY-6lQ.normalTitle" = "www.flaticons.com";
+
+/* Class = "UIBarButtonItem"; title = "©"; ObjectID = "kcy-Ix-0Sl"; */
+"kcy-Ix-0Sl.title" = "©";
+
+/* Class = "UIButton"; normalTitle = "SwiftChart"; ObjectID = "nl7-IR-lct"; */
+"nl7-IR-lct.normalTitle" = "SwiftChart";
+
+/* Class = "UILabel"; text = "Grafico"; ObjectID = "qX9-6X-1uf"; */
+"qX9-6X-1uf.text" = "Grafico";
+
+/* Class = "UIButton"; normalTitle = "www.flaticons.com"; ObjectID = "qj5-UG-jbT"; */
+"qj5-UG-jbT.normalTitle" = "www.flaticons.com";
+
+/* Class = "UIButton"; normalTitle = "Max"; ObjectID = "th3-9o-Fdh"; */
+"th3-9o-Fdh.normalTitle" = "Max";
+
+/* Class = "UILabel"; text = "Exchange rate: "; ObjectID = "thT-eB-Gd3"; */
+"thT-eB-Gd3.text" = "Cambio valuta: ";
+
+/* Class = "UILabel"; text = "icon made by"; ObjectID = "vU9-kr-oUV"; */
+"vU9-kr-oUV.text" = "icona fatta da";
+
+/* Class = "UILabel"; text = "icon made by"; ObjectID = "vhU-VM-waJ"; */
+"vhU-VM-waJ.text" = "icona fatta da";
+
+/* Class = "UIViewController"; title = "Credits"; ObjectID = "wSm-6G-XcU"; */
+"wSm-6G-XcU.title" = "Riconoscimenti";
+
+/* Class = "UIButton"; normalTitle = "www.flaticons.com"; ObjectID = "xqE-t6-NqN"; */
+"xqE-t6-NqN.normalTitle" = "www.flaticons.com";
+
+/* Class = "UILabel"; text = "Exchange History"; ObjectID = "yL0-iP-rOf"; */
+"yL0-iP-rOf.text" = "Storico Cambio Valuta";
