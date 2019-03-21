@@ -45,6 +45,18 @@ class ConvertoViewController: UIViewController, CurrencyChooseHandler {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        let shadow = NSShadow()
+        shadow.shadowBlurRadius = 2
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            shadow.shadowOffset = CGSize(width: 5, height: 0)
+            navigationController?.navigationBar.largeTitleTextAttributes = [.font: UIFont(name: "GillSans-SemiBoldItalic", size: 60)!, .foregroundColor: UIColor.white, .shadow: shadow]
+        }
+        else {
+            shadow.shadowOffset = CGSize(width: 3, height: 0)
+            navigationController?.navigationBar.largeTitleTextAttributes = [.font: UIFont(name: "GillSans-SemiBoldItalic", size: 45)!, .foregroundColor: UIColor.white, .shadow: shadow]
+        }
+        navigationController?.view.backgroundColor = UIColor(red: 37/255, green: 65/255, blue: 178/255, alpha: 1)
+        
         CurrenciesTableViewController.chooseHandler = self
         btnExchange.imageView?.contentMode = .scaleAspectFit
         btnCurrencyLeft.imageView?.contentMode = .scaleAspectFill
