@@ -38,7 +38,12 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate, DataReload
         chart.delegate = self
         chart.hideHighlightLineOnTouchEnd = true
         chart.xLabelsTextAlignment = .center
-        chart.labelFont = UIFont.init(name: "GillSans", size: 12)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            chart.labelFont = UIFont.init(name: "GillSans", size: 20)
+        }
+        else {
+            chart.labelFont = UIFont.init(name: "GillSans", size: 12)
+        }
         
         self.view.bringSubviewToFront(errorView)
         errorView.isHidden = true
@@ -168,7 +173,7 @@ class ExchangeHistoryViewController: UIViewController, ChartDelegate, DataReload
             dateForm.dateFormat = "yyyy"
             return dateForm.string(from: date)
         default:
-            dateForm.dateFormat = "yyyy"
+            dateForm.dateFormat = "yy"
             if labels.count == 0 {
                 return dateForm.string(from: date)
             }

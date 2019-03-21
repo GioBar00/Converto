@@ -14,6 +14,8 @@ class ApiManager {
     
     let apiUrl = "https://api.exchangeratesapi.io/"
     
+    var tasks = [URLSessionDataTask]()
+    
     func GetExchange(base : Currency, to : Currency, completion: @escaping (Double)->(), onError: @escaping () -> ()) {
         var url = apiUrl + "latest/?"
         url += "base=" + base.code + "&"
@@ -73,7 +75,12 @@ class ApiManager {
         
         let request = URLRequest(url: URL(string: url)!)
         
-        URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
+        for t in tasks {
+            t.cancel()
+        }
+        tasks.removeAll()
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
             
             guard let data = data, error == nil else {
                 DispatchQueue.main.async {
@@ -103,7 +110,9 @@ class ApiManager {
                 }
             }
             
-        }).resume()
+        })
+        tasks.append(task)
+        task.resume()
     }
 }
 

@@ -57,7 +57,13 @@ class CurrenciesTableViewController: UITableViewController, CurrencySelectHandle
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return 120
+        }
+        else {
+            return 80
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

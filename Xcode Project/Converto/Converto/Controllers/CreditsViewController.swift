@@ -13,7 +13,7 @@ class CreditsViewController: UIViewController {
     @IBOutlet var labels: [UILabel]!
     @IBOutlet weak var lblCopyright: UILabel!
     
-    let links = ["https://www.flaticon.com/", "http://www.freepik.com/", "https://www.flaticon.com/authors/dmitri13", "https://www.flaticon.com/authors/vaadin", "https://github.com/gpbl/SwiftChart", "https://exchangeratesapi.io"]
+    let links = ["https://www.flaticon.com/", "http://www.freepik.com/", "https://www.flaticon.com/authors/dmitri13", "https://www.flaticon.com/authors/vaadin", "https://github.com/gpbl/SwiftChart", "https://exchangeratesapi.io", "https://paypal.me/Alfatrox/1.5"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

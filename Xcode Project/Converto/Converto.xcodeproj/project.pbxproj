@@ -41,6 +41,8 @@
 		D54DBB9521F2358A00FCA613 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		D569075821EDD0C200E0C987 /* ConvertoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertoViewController.swift; sourceTree = "<group>"; };
 		D569C30021F9A9420091D7D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D577121D22043C8900DAFC2D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		D577121E22043C8900DAFC2D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D5804E0721E74C7800B55E2A /* Converto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Converto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5804E0A21E74C7800B55E2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5804E0F21E74C7800B55E2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				en,
 				Base,
 				it,
+				es,
 			);
 			mainGroup = D5804DFE21E74C7800B55E2A;
 			productRefGroup = D5804E0821E74C7800B55E2A /* Products */;
@@ -292,6 +295,7 @@
 			children = (
 				D52A07852202F9CD00FAE827 /* en */,
 				D52A07872202FAA300FAE827 /* it */,
+				D577121E22043C8900DAFC2D /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -301,6 +305,7 @@
 			children = (
 				D5804E0F21E74C7800B55E2A /* Base */,
 				D52A07812202F6E900FAE827 /* it */,
+				D577121D22043C8900DAFC2D /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -449,7 +454,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tk.gbcorporation.Converto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -468,7 +473,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tk.gbcorporation.Converto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

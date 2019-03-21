@@ -1,0 +1,81 @@
+/* 
+  Localizable.strings
+  Converto
+
+  Created by Giovanni Barbiero on 31/01/2019.
+  Copyright © 2019 Giovanni Barbiero. All rights reserved.
+*/
+"Warning" = "Advertencia";
+"It wasn't possible to load the exchange value.\nCheck if there is connection and try again." = "No fue posible cargar el valor de cambio.\nCompruebe si hay conexión e inténtelo de nuevo. ";
+"Try again" = "Inténtalo de nuevo";
+"Exchange:\n" = "Intercambio:\n";
+
+// currencies
+"Euro" = "Euro";
+"US Dollar" = "Dólar Estadounidense";
+"British Pound" = "Libra Esterlina";
+"Australian Dollar" = "Dólar Australiano";
+"Brazilian Real" = "Real Brasileño";
+"Bulgarian Lev" = "Lev Búlgaro";
+"Canadian Dollar" = "Dólar Canadiense";
+"Chinese Renminbi" = "Renminbi Chino";
+"Croatian Kuna" = "Kuna Croata";
+"Czech Crown" = "Corona Checa";
+"Danish Krone" = "Corona Danesa";
+"Hong Kong Dollar" = "Dólar de Hong Kong";
+"Hungarian Forint" = "Florín Húngaro";
+"Icelandic Krona" = "Corona Islandesa";
+"Indian Rupee" = "Rupia India";
+"Indonesian Rupee" = "Rupia Indonesia";
+"Malaysian Ringgit" = "Ringgit de Malasia";
+"Mexican Peso" = "Peso Mexicano";
+"New Israeli Shekel" = "Nuevo Shekel Israelí";
+"New Zealand Dollar" = "Dólar Neozelandés";
+"Norwegian Krone" = "Corona Noruega";
+"Philippine Weight" = "Peso Filipino";
+"Polish Zloty" = "Zloty Polaco";
+"Romanian Leu" = "Leu Rumano";
+"Russian Ruble" = "Rublo Ruso";
+"Singapore Dollar" = "Dólar de Singapur";
+"South African Rand" = "Rand Sudafricano";
+"South Korean Won" = "Won Surcoreano";
+"Swedish Krona" = "Corona Sueca";
+"Swiss Franc" = "Franco Suizo";
+"Thai Baht" = "Baht Tailandés";
+"Turkish Lira" = "Lira Turca";
+"Yen" = "Yen";
+
+// countries
+"European Union" = "Unión Europea";
+"United States of America" = "Estados Unidos de América";
+"England" = "Inglaterra";
+"Australia" = "Australia";
+"Brazil" = "Brasil";
+"Bulgaria" = "Bulgaria";
+"Canada" = "Canadá";
+"China" = "China";
+"Croatia" = "Croacia";
+"Czech Republic" = "República Checa";
+"Denmark" = "Dinamarca";
+"Hong Kong" = "Hong Kong";
+"Hungary" = "Hungría";
+"Iceland" = "Islandia";
+"India" = "India";
+"Indonesia" = "Indonesia";
+"Malaysia" = "Malasia";
+"Mexico" = "México";
+"Israel" = "Israel";
+"New Zealand" = "Nueva Zelanda";
+"Norway" = "Noruego";
+"Philippines" = "Filipinas";
+"Poland" = "Polonia";
+"Romania" = "Rumania";
+"Russia" = "Rusia";
+"Singapore" = "Singapur";
+"South Africa" = "Sudáfrica";
+"South Korea" = "Corea del Sur";
+"Sweden" = "Suecia";
+"Switzerland" = "Suiza";
+"Thailand" = "Tailandia";
+"Turkey" = "Turquía";
+"Japan" = "Japón";
