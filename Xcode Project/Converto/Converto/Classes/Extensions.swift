@@ -81,7 +81,7 @@ extension Date {
         
         assert(weekdaysName.contains(dayName), "weekday symbol should be in form \(weekdaysName)")
         
-        var searchWeekdayIndex = weekdaysName.index(of: dayName)! + 1
+        var searchWeekdayIndex = weekdaysName.firstIndex(of: dayName)! + 1
         if searchWeekdayIndex > 7 {
             searchWeekdayIndex = 1
         }
